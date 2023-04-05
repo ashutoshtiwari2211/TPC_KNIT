@@ -2,15 +2,14 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const methodOverride = require('method-override');
-const { dirname } = require('path');
-// const mongoose = require('mongoose');
-// const morgan = require('morgan');
+const mongoose = require('mongoose');
 const ejsMate = require('ejs-mate');
-// const passport = require('passport');
-// const LocalStrategy = require('passport-local');
-// const session = require('express-session');
-// const flash = require('connect-flash');
-// const MongoDBStore = require('connect-mongo');
+const companyRoutes = require('./routes/company.routes.js')
+
+mongoose.connect('mongodb://127.0.0.1:27017/Tpc', {useNewUrlParser: true});
+const db=mongoose.connection
+db.on('error', err => console.error(err));
+db.once('open',()=>{console.log("Database Connected!")});
 
 //built-in middleware
 app.use(express.json()) // for parsing application/json
@@ -27,10 +26,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'partials')));
 
 
+
+
+app.use('/company', companyRoutes)
+
+
+
 app.use('/', (req, res) => {
     res.send('Welcome To Knit Placement Ground');
 })
-
 
 
 
