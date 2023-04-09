@@ -7,6 +7,9 @@ const studentSchema = mongoose.Schema({
     name: {
         type: String
     },
+    email: {
+        type: String
+    },
     branch: {
         type: String
     },
