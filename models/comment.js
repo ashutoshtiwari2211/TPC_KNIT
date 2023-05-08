@@ -9,7 +9,10 @@ const commentSchema = mongoose.Schema({
     },
     content: {
         type: String
-    }
+    },
+    publishDate: {
+        type: String
+     }
 })
 
 const commentModel = mongoose.model('Comment', commentSchema)

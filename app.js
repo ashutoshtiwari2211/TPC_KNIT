@@ -3,7 +3,10 @@ const app = express();
 const path = require('path');
 const methodOverride = require('method-override');
 const ejsMate = require('ejs-mate');
+const companyRoutes = require('./routes/company.routes.js')
+const archiveRoutes = require('./routes/archive.routes.js')
 const passport = require('passport');
+
 require('dotenv').config()
 
 const db = require("./utils/dbConnection");
@@ -36,6 +39,10 @@ app.use(cookieSession({
 app.use(passport.initialize())
 app.use(passport.session())
 
+
+app.use('/company', companyRoutes)
+app.use('/archive', archiveRoutes)
+
 const authRoutes = require('./routes/auth.routes.js')
 app.use('/auth', authRoutes);
 
@@ -43,6 +50,7 @@ app.use((req, res, next) => {
     res.locals.user = req.user; //passport attached methods to req such as req.isAuthenticate(), req.user etc 
     next(); //whatever there in req-flash it attached to res object and can use it
 })
+
 
 
 app.use('/', (req, res) => {
