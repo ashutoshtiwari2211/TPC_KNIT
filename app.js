@@ -5,6 +5,8 @@ const methodOverride = require('method-override');
 const mongoose = require('mongoose');
 const ejsMate = require('ejs-mate');
 const companyRoutes = require('./routes/company.routes.js')
+const archiveRoutes = require('./routes/archive.routes.js')
+require('dotenv').config()
 
 mongoose.connect('mongodb://127.0.0.1:27017/Tpc', {useNewUrlParser: true});
 const db=mongoose.connection
@@ -29,7 +31,7 @@ app.use(express.static(path.join(__dirname, 'partials')));
 
 
 app.use('/company', companyRoutes)
-
+app.use('/archive', archiveRoutes)
 
 
 app.use('/', (req, res) => {

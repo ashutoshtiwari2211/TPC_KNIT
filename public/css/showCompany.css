@@ -1,0 +1,43 @@
+.studentList{
+    border: 2px solid black;
+    margin: 4em;
+    width: 80%;
+    overflow-x: scroll;
+    white-space: nowrap;
+    display: inline-block;
+}
+
+.attributesDiv{
+    margin: 0em 2em 1em 2em;
+    width: 13em;
+    display: inline-block;
+}
+.valuesDiv{
+    margin: 0em 2em 0em 2em;
+    width: 13em;
+    height: 2em;
+    display: inline-block;
+}
+
+#commentContent {
+    width: 100%;
+    -webkit-box-sizing: border-box; 
+    -moz-box-sizing: border-box;   
+    box-sizing: border-box;         
+}
+#commentBody{
+ line-height: 1.4;
+   color: #252525;
+   font-family: 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';  
+   font-size: 16px;
+ }
+
+#commentAuthor{
+ font-family:  monospace;
+ font-size: 15px; 
+ color: rgb(131, 131, 134);
+}
+
+#commentArea{
+    margin: 0em 10em 0em 10em;
+}
