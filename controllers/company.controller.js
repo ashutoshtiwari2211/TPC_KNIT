@@ -21,6 +21,7 @@ class companyController{
         res.render('company/addCompany')
     }
     static async addCompany(req, res){
+        console.log(req.body)
         const company = new companyModel(req.body)
         await company.save()
         res.redirect('/company')
@@ -61,8 +62,6 @@ class companyController{
         const {id} = req.params
         const company = await companyModel.findById(id)
         company.comments.push(comment)
-        
-        console.log(comment.name)
 
         await company.save()
         await comment.save()

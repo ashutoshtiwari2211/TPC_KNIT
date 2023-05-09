@@ -10,9 +10,8 @@ const companySchema = mongoose.Schema({
    pakage: {
     type: Number
    },
-   timestamp: { 
-    type: Date, 
-    default: Date.now
+   eligibleYear: { 
+    type: Number, 
    },
    isActive: {
     type: Boolean,
