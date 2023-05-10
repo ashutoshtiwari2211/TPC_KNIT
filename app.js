@@ -5,6 +5,7 @@ const methodOverride = require('method-override');
 const ejsMate = require('ejs-mate');
 const companyRoutes = require('./routes/company.routes.js')
 const archiveRoutes = require('./routes/archive.routes.js')
+const managePlacementRecordRoutes = require('./routes/managePlacementRecord.routes.js')
 const passport = require('passport');
 
 require('dotenv').config()
@@ -27,8 +28,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'partials')));
 
 
-const companyRoutes = require('./routes/company.routes.js')
-app.use('/company', companyRoutes)
 
 const cookieSession = require('cookie-session');
 app.use(cookieSession({
@@ -42,6 +41,7 @@ app.use(passport.session())
 
 app.use('/company', companyRoutes)
 app.use('/archive', archiveRoutes)
+app.use('/manage/placementRecord', managePlacementRecordRoutes)
 
 const authRoutes = require('./routes/auth.routes.js')
 app.use('/auth', authRoutes);
