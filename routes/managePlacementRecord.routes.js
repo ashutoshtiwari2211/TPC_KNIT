@@ -4,6 +4,7 @@ const manageCompanyRecordController = require('../controllers/managePlacementRec
 
 
 router.get('/', manageCompanyRecordController.show)
+router.post('/filter', manageCompanyRecordController.showFilter)
 
 
 

@@ -2,6 +2,8 @@ const mongoose = require('mongoose');
 const companyModel = require('./models/company.js')
 const roundModel = require('./models/round')
 const studentModel = require('./models/student')
+const PlacementModel = require('./models/placement');
+const placementModel = require('./models/placement');
 
 mongoose.connect('mongodb://127.0.0.1:27017/Tpc', {useNewUrlParser: true});
 const db=mongoose.connection
@@ -122,16 +124,70 @@ db.once('open',()=>{console.log("Database Connected!")});
 //     }
 // ])
 
-companyModel.deleteMany({}).then((data)=>{
-   console.log(data)
-})
+// companyModel.deleteMany({}).then((data)=>{
+//    console.log(data)
+// })
+
+async function callMe(){
+
+const comp = await companyModel.findOne({name: "Infosys"})
+
+
+await placementModel.insertMany([
+   {
+      rollNo: 19603,
+      name: "Abhinav Tiwari",
+      placedIn: [comp._id],
+      highestPakage: 9.5
+   },
+   {
+      rollNo: 19618,
+      name: "Ashutosh Tiwari",
+      placedIn: [comp._id],
+      highestPakage: 9.5
+   },
+   {
+      rollNo: 19407,
+      name: "Abhuday",
+      placedIn: [comp._id],
+      highestPakage: 9.5
+   },
+   {
+      rollNo: 19418,
+      name: "Abhay",
+      placedIn: [comp._id],
+      highestPakage: 9.5
+   },
+   {
+      rollNo: 19449,
+      name: "Nandini",
+      placedIn: [comp._id],
+      highestPakage: 9.5
+   },
+   {
+      rollNo: 19224,
+      name: "Kumar Ayush",
+      placedIn: [comp._id],
+      highestPakage: 9.5
+   },
+   {
+      rollNo: 19469,
+      name: "Deepak",
+      placedIn: [comp._id],
+      highestPakage: 9.5
+   }
+
+])
 
 
 
+// await placementModel.deleteMany()
 
 
+const data = await placementModel.find()
+console.log(data)
 
+}
 
-
-
+callMe()
 
