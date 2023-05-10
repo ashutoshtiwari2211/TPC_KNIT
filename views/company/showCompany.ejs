@@ -12,10 +12,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
 </head>
 <body>
-    
-       This is show page for <%= company.name %>
-       
-      <a href="/company/<%=company._id%>/addRound"><button id = "random">Add Round</button></a>  
+  <%- include('../partials/navbar')  %>
+
+      <div class="d-flex justify-content-center mt-5">
+       <h1> <%= company.name %> (<%= company.role %>) </h1>
+      </div>
+      
+      <div class="row d-flex justify-content-center mt-3">
+        <div class="col-8">
+        <%- company.description %>
+      </div>
+      </div>
 
 
     
@@ -48,7 +55,7 @@
             </div>
             <% } %>
 
-
+            <a href="/company/<%=company._id%>/addRound"><button id = "random">Add Round</button></a>  
 
         </div>
 
