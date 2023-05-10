@@ -29,6 +29,7 @@
     <% for(let company of activeCompaniesList){ %>
         <div class="card mt-3">
             <h5 class="card-header"> <%= company.name %> </h5>
+            <h6> <%= company.eligibleYear %> </h6>
             <div class="card-body">
               <h5 class="card-title"> <%= company.role %> </h5>
               <p class="card-text"><%- company.description %></p>

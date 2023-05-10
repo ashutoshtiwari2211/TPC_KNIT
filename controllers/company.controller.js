@@ -21,6 +21,7 @@ class companyController{
         res.render('company/addCompany')
     }
     static async addCompany(req, res){
+        console.log(req.body)
         const company = new companyModel(req.body)
         await company.save()
         res.redirect('/company')
