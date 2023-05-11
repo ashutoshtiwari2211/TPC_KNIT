@@ -1,0 +1,46 @@
+<%- include('../partials/header') %>
+    
+    <%- include('../partials/navbar')  %>
+
+    
+    
+
+    <section class="vh-100 gradient-custom">
+        <div class="container py-1 h-50">
+          <div class="row justify-content-center align-items-center h-100">
+            <div class="col-12 col-lg-9 col-xl-7">
+    <div >
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Roll No.</th>
+            <th scope="col">Name</th>
+            <th scope="col">Branch</th>
+            <th scope="col">Passing Year</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+        <% let sNo = 1 %>    
+        <% for(let student of filteredStudents){ %>
+            <tr>
+                <th scope="row"> <%= sNo %> </th>
+                <td> <%= student.rollNo %> </td>
+                <td> <%= student.name %> </td>
+                <td> <%= student.branch %> </td>
+                <td> <%= student.endYear %> </td>
+              </tr>
+              <% sNo++ %>
+        <% } %>  
+
+        </tbody>
+      </table>
+    </div>
+</div>
+</div>
+</div>
+</section>
+
+</body>
+</html>

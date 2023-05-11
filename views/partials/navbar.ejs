@@ -1,59 +1,40 @@
-<nav id="Navbar" class="navbar navbar-expand-lg navbar-dark " style="background-color: #490407;">
-  <div class="container-fluid">
-    <button class="navbar-toggler" type="button" data-bs-toggle='collapse' data-bs-target="#navbarSupportedContent"
-      aria-controls="#navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+<nav>
+  <div>
+    <ul>
+      <li>
+        <img src="https://www.knit.ac.in/images/foot-logo.png" alt="Logo" />
+      </li>
+      <li><a href="/">Home</a></li>
+      <li><a href="/company">Drive</a></li>
+      <li>
+        <a href="/archive">Placement Archive</a>
+      </li>
+      <li class="dropdown">
+        <a href="#">Manage</a>
+        <div class="dropdown-content">
+          <a href="#">Manage TPO</a>
+          <a href="/manage/placementRecord">Placement Record</a>
+        </div>
+      </li>
+    </ul>
+  </div>
 
-      <div class=" navbar-nav">
+  <div class="d-flex justify-content-between mx-5">
+    <% if(false){ %>
+    <span style="color: rgb(241, 241, 34)" class="mt-1">
+      <%= currentUser.username %>
+    </span>
+    <form action="/logout">
+      <button class="btn btn-outline-danger mx-3 btn-sm">Logout</button>
+    </form>
+    <% } %> <% if(true) {%>
 
-        <div class=" text-light  pt-2 pb-2 " style="padding-right: 7.6em; margin-left: 3em;"><a href="/"
-            style="text-decoration:none; color:honeydew;"><b> KNIT - Training and Placement </b></a> </div>
-
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item  active mx-5">
-            <a class="nav-link" href="/company">Home<span class="sr-only"></span> </a>
-          </li>
-          <li class="nav-item mx-5">
-            <a class="nav-link" href="/company">Drives</a>
-          </li>
-          <li class="nav-item mx-5">
-            <a class="nav-link" href="/archive">Placement Archive</a>
-          </li>
-
-          <li class="nav-item dropdown mx-5">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button"
-              data-bs-toggle="dropdown" aria-expanded="false">
-              Manage
-            </a>
-            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-              <li><a class="dropdown-item" href="#">Manage TPO</a></li>
-              <li><a class="dropdown-item" href="/manage/placementRecord">View Placement Record</a></li>
-            </ul>
-          </li>
-
-        </ul>
-
-      </div>
-    </div>
-
-    <div class="d-flex justify-content-between mx-5">
-      <% if(currentUser){ %>
-        <span style="color: rgb(241, 241, 34);" class="mt-1">
-          <a href="/profile/<%=currentUser._id %>">
-            <%= currentUser.name %>
-          </a>
-        </span>
-        <form action="/auth/logout">
-          <button class="btn btn-outline-danger mx-3 btn-sm">Logout</button>
-        </form>
-        <% } else { %>
-          <form action="/auth">
-            <button class="btn btn-danger"> Login/SignUp </button>
-          </form>
-          <% } %>
-
-    </div>
+    <form action="/login">
+      <button class="btn btn-danger">Login</button>
+    </form>
+    <form action="/register">
+      <button class="btn btn-outline-warning mx-2">Register</button>
+    </form>
+    <% } %>
   </div>
 </nav>
