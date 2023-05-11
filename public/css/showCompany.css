@@ -1,12 +1,17 @@
 .studentList{
-    border: 2px solid black;
-    margin: 4em;
+    border: 1px solid black;
+    margin-left: 5em;
+    margin-top: 1em;
     width: 80%;
     overflow-x: scroll;
     white-space: nowrap;
     display: inline-block;
 }
 
+.roundName{
+    margin-left: 5em;
+    width: 80%;
+}
 .attributesDiv{
     margin: 0em 2em 1em 2em;
     width: 13em;

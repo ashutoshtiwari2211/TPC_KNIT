@@ -1,7 +1,10 @@
 const mongoose = require('mongoose');
 
 const roundSchema = mongoose.Schema({
-   selectedStudents: []
+   selectedStudents: [],
+   name: {
+      type: String
+   }
 })
 
 const roundModel = mongoose.model('Round', roundSchema)

@@ -12,26 +12,48 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
 </head>
 <body>
-  <%- include('../partials/navbar')  %>
+  <%- include('../partials/navbar')  %>    
+
 
       <div class="d-flex justify-content-center mt-5">
        <h1> <%= company.name %> (<%= company.role %>) </h1>
-      </div>
-      
+      </div> 
+
       <div class="row d-flex justify-content-center mt-3">
         <div class="col-8">
         <%- company.description %>
       </div>
       </div>
 
+      <div class="d-flex justify-content-end mx-5 my-5">
+        <a href="/company/<%=company._id%>/markPastDrive"> <button type="button" class="btn btn-danger rounded-pill"> Move to Past Drive </button> </a>
+      </div> 
 
     
-       <div class="row">
+       <div class="row mb-5 d-flex justify-content-center">
 
-        <div class="col-8" style="border: 2px solid black">
+        <div class="col-8">
            
+           <% let cnt = 1 %>
 
             <% for(let round of company.rounds){ %>
+              
+              
+              
+              <div class="d-flex justify-content-between roundName mt-5"> 
+                <h4> <%= round.name %> Result  </h4>
+              
+                 <div>
+                  <% if(cnt == company.rounds.length && company.isHired == false){ %>
+                    <form action="/company/<%=company._id%>/finaliseRound" method = "POST">
+                      <button type="button" class="btn btn-success rounded-pill"> Finalise </button>
+                    </form>  
+                  <% } %>
+    
+                   </div>
+                  </div>
+          
+
             <div class  = "studentList">
 
             <% const attributes = Object.keys(round.selectedStudents[0]) %>    
@@ -53,16 +75,20 @@
             </div>
 
             </div>
+
+            <% cnt++ %>
+
             <% } %>
 
-            <a href="/company/<%=company._id%>/addRound"><button id = "random">Add Round</button></a>  
-
+            <div class="d-flex justify-content-center mt-5">
+              <% if(company.isHired == false){ %>
+                <a href="/company/<%=company._id%>/addRound"><button id = "random" type="button" class="btn btn-primary rounded-pill">Add Round</button></a>  
+              <% } %>
+            </div>
         </div>
 
 
-        <div class="col-4" style="border: 2px solid black">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatem distinctio, quos cupiditate impedit ea ipsa consectetur harum id quia reiciendis deleniti ut suscipit, dolores temporibus sint provident, unde minima saepe.
-        </div>
+        
 
        </div>
 
