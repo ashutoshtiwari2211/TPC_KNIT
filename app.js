@@ -39,18 +39,41 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 
-app.use('/company', companyRoutes)
-app.use('/archive', archiveRoutes)
-app.use('/manage/placementRecord', managePlacementRecordRoutes)
-
 const authRoutes = require('./routes/auth.routes.js')
 app.use('/auth', authRoutes);
 
 app.use((req, res, next) => {
-    res.locals.user = req.user; //passport attached methods to req such as req.isAuthenticate(), req.user etc 
+    res.locals.currentUser = req.user; //passport attached methods to req such as req.isAuthenticate(), req.user etc 
     next(); //whatever there in req-flash it attached to res object and can use it
 })
 
+
+app.use('/company', companyRoutes)
+app.use('/archive', archiveRoutes)
+app.use('/manage/placementRecord', managePlacementRecordRoutes)
+
+//User Profile
+const studentModel = require('./models/student.js')
+app.get('/profile/:id', async (req, res) => {
+    const { id } = req.params
+    const user = await studentModel.findById(id);
+    res.render('user', { user });
+})
+
+//register
+app.get('/register', (req, res) => {
+    res.render('register');
+})
+app.post('/register', async (req, res) => {
+    const registeredUser = new studentModel(req.body);
+    await registeredUser.save()
+        .then(doc => {
+            console.log("Inserted in student model");
+            return doc;
+        })
+        .catch(err => { throw err });
+    res.redirect('/');
+})
 
 
 app.use('/', (req, res) => {

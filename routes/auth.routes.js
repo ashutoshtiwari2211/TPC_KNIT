@@ -13,7 +13,7 @@ router.get('/callback', passport.authenticate('google', { failureRedirect: '/aut
 // Success
 router.get('/callback/success', (req, res) => {
     if (!req.user) res.redirect('/auth/callback/failure');
-    res.send("Welcome " + req.user.name + " " + req.user.email);
+    res.redirect('/');
 });
 
 // failure

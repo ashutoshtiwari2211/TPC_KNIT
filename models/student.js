@@ -10,6 +10,9 @@ const studentSchema = mongoose.Schema({
     email: {
         type: String
     },
+    course: {
+        type: String
+    },
     branch: {
         type: String
     },
@@ -21,7 +24,14 @@ const studentSchema = mongoose.Schema({
     },
     contactNumber: {
         type: Number
+    },
+    dob: {
+        type: String
+    },
+    gender: {
+        type: String
     }
+
 })
 
 

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <script src="/js/jquery.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+
+    <style>
+        .container {
+            margin: 20px auto;
+            max-width: 800px;
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+        }
+
+        .profile-details h2 {
+            margin: 0;
+        }
+
+        .details {
+            margin-top: 20px;
+        }
+
+        .table {
+            width: 100%;
+        }
+
+        .table th,
+        .table td {
+            text-align: left;
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .table th {
+            background-color: #f2f2f2;
+            font-weight: normal;
+        }
+
+        .table tr:hover {
+            background-color: #f5f5f5;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+    <%- include('partials/navbar') %>
+
+        <div class="container">
+            <div class="profile-header">
+                <!-- Student Information -->
+                <div class="profile-details">
+                    <h2>
+                        <%= user.name %>
+                    </h2>
+                    <p>
+                        <%= user.email %>
+                    </p>
+                    <!-- Add more student information here -->
+                </div>
+            </div>
+            <hr>
+            <!-- Courses and Grades -->
+            <div class="details">
+                <h3>Details</h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Roll Number</td>
+                            <td>
+                                <%= user.rollNo %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Course</td>
+                            <td>
+                                <%= user.course %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Branch</td>
+                            <td>
+                                <%= user.branch %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Start Year</td>
+                            <td>
+                                <%= user.startYear %>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>End Year</td>
+                            <td>
+                                <%= user.endYear %>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Contact Number</td>
+                            <td>
+                                <%= user.contactNumber %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Date of Birth</td>
+                            <td>
+                                <%= user.dob %>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+</body>
+
+</html>

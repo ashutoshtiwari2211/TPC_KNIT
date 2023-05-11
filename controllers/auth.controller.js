@@ -27,21 +27,18 @@ passport.use(new GoogleStrategy({
     passReqToCallback: true
 }, async function (request, accessToken, refreshToken, profile, done) {
     try {
+        console.log(profile);
         const name = profile.displayName
         const email = profile.emails[0].value
+
         let existingUser = await User.findOne({ 'email': email });
         // if user exists return the user
         if (existingUser) {
             return done(null, existingUser);
         }
         // if user does not exist create a new user
-        console.log('Creating new user...');
-        const newUser = new User({
-            name, email
-        });
-        await newUser.save();
-        console.log(profile);
-        return done(null, newUser);
+        return request.res.redirect('/register');
+        
     }
     catch (error) {
         return done(error, false)
