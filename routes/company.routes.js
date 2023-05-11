@@ -12,5 +12,8 @@ router.get('/:id/studentApi', companyController.studentApi)
 router.get('/:id/addRound', companyController.addRound)
 router.post('/:id', companyController.roundResult)
 router.post('/:id/comment', companyController.addComment)
+router.get('/:id/markPastDrive', companyController.markPastDrive)
+router.delete('/:id', companyController.deleteCompany)
+router.post('/:id/finaliseRound', companyController.finaliseRound)
 
 module.exports = router

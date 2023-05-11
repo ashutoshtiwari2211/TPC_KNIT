@@ -18,6 +18,10 @@ const companySchema = mongoose.Schema({
     default: true,
     required: true
    },
+   isHired: {
+    type: Boolean,
+    default: false
+   },
    eligibleBranches: {
     type: [String]
    },

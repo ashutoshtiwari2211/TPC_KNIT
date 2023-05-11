@@ -1,7 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+
   <%- include('../partials/header') %>
     <%- include('../partials/navbar') %>
+
 
     <div class="row d-flex justify-content-center mt-5">
       <div class="col-9 d-flex justify-content-end">
@@ -13,34 +13,59 @@
       </div>
     </div>
 
-    <div class="row d-flex justify-content-center">
-      <div class="col-9 mt-5">
-        <div class="driveHeading">Ongoing Drives</div>
-        <% for(let company of activeCompaniesList){ %>
+
+  <div class="row d-flex justify-content-center">
+    <div class="col-9 mt-5">
+     <div class="driveHeading"> <u> Ongoing Drives </u></div>
+    <% for(let company of activeCompaniesList){ %>
         <div class="card mt-3">
-          <h5 class="card-header"><%= company.name %></h5>
-          <h6><%= company.eligibleYear %></h6>
-          <div class="card-body">
-            <h5 class="card-title"><%= company.role %></h5>
-            <p class="card-text"><%- company.description %></p>
-            <a href="/company/<%= company._id %>" class="btn btn-primary"
-              >view</a
-            >
+          <div>
+            <div class="card-header d-flex justify-content-between">
+            <span> 
+              <h5 class="d-inline"><%= company.name %></h5> 
+              <h5 class="d-inline"> - <%= company.role %> </h5>
+            </span>
+          
+            <span>
+              <form class="d-inline-block" action="/company/<%=company._id%>?_method=DELETE" method="POST">
+                <button class="mt-1" style="border: none; background-color: rgba(0,0,0,0);" title="delete"><i class="material-icons">delete</i></button>
+              </form>
+            </span>
+          </div>
+           
+          </div>
+            <div class="card-body">
+              
+
+              <div class="row justify-content-between"> 
+              <div class="col-9"> <p class="card-text d-inline-block"><%- company.description %></p> </div>
+              <div class="col-3 d-flex justify-content-end pt-4"> <a class="text-decoration-none" href="/company/<%= company._id %>" >view</a> </div>
+            </div>
+
+            </div>
+
           </div>
         </div>
         <% } %>
 
         <div class="driveHeading">Past Drives</div>
 
-        <% for(let company of pastCompaniesList){ %>
-        <div class="card mt-3">
-          <h5 class="card-header"><%= company.name %></h5>
+
+    <div class="driveHeading mt-5"> <u>Past Drives </u> </div>
+    
+    <% for(let company of pastCompaniesList){ %>
+      <div class="card mt-3">
+          <h5 class="card-header"> <%= company.name %> - <%= company.role %> </h5>
+           
           <div class="card-body">
-            <h5 class="card-title"><%= company.role %></h5>
-            <p class="card-text"><%- company.description %></p>
-            <a href="/company/<%= company._id %>" class="btn btn-primary"
-              >view</a
-            >
+           
+
+            <div class="row justify-content-between"> 
+              <div class="col-9"> <p class="card-text d-inline-block"><%- company.description %></p> </div>
+              <div class="col-3 d-flex justify-content-end"> <a class="text-decoration-none" href="/company/<%= company._id %>" >view</a> </div>
+            </div>
+
+
           </div>
         </div>
         <% } %>

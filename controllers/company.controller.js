@@ -2,6 +2,7 @@ const companyModel = require('../models/company.js')
 const studentModel = require('../models/student.js')
 const roundModel = require('../models/round.js')
 const commentModel = require('../models/comment.js')
+const placementModel = require('../models/placement.js')
 
 class companyController{
     static async showAllCompany(req, res){
@@ -36,13 +37,15 @@ class companyController{
     }
     static async roundResult(req, res){
         const {id} = req.params
-        const {selectedStudents} = req.body
+        const {selectedStudents, name} = req.body
         const round = new roundModel()
         for(let i = 0; i < selectedStudents.length; i++)
             selectedStudents[i] = JSON.parse(selectedStudents[i])
 
-        console.log(selectedStudents)
+        //console.log(selectedStudents)
         round.selectedStudents = selectedStudents
+        round.name = name
+        //console.log(round)
         const company = await companyModel.findById(id)
         company.rounds.push(round)
 
@@ -68,6 +71,29 @@ class companyController{
 
         res.redirect(`/company/${id}`)
     }
+    static async markPastDrive(req, res){
+        const {id} = req.params
+        await companyModel.findByIdAndUpdate(id, {isActive: false})
+        res.redirect('/company')
+    }
+    static async deleteCompany(req, res){
+        const {id} = req.params
+        await companyModel.findByIdAndDelete(id)
+        res.redirect('/company')
+    }
+    static async finaliseRound(req, res){
+        const {id} = req.params
+        await companyModel.findByIdAndUpdate(id, {isHired: true})
+        const company = await companyModel.findById(id).populate('rounds')
+        const round = company.rounds[company.rounds.length-1]
+        const placedRollNos = round.selectedStudents.map((obj)=>{return obj["Roll No."]})
+        console.log(placedRollNos) 
+        
+        await placementModel.updateMany({rollNo: {$in: placedRollNos}}, {$addToSet: {placedIn: id}})
+
+        res.redirect(`/company/${id}`)
+    }
+
 }
 
 module.exports = companyController
