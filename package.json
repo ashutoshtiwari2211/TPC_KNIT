@@ -10,10 +10,12 @@
     "author": "Ashutosh Tiwari",
     "license": "ISC",
     "dependencies": {
+        "connect-flash": "^0.1.1",
         "cookie-session": "^2.0.0",
         "dotenv": "^16.0.3",
         "ejs-mate": "^4.0.0",
         "express": "^4.18.2",
+        "express-session": "^1.17.3",
         "method-override": "^3.0.0",
         "mongoose": "^7.0.3",
         "nodemon": "^2.0.22",

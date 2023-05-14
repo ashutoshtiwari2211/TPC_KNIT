@@ -6,6 +6,7 @@ const placementModel = require('../models/placement.js')
 
 class companyController{
     static async showAllCompany(req, res){
+        
         const activeCompaniesList = await companyModel.find({isActive: true})
         const pastCompaniesList = await companyModel.find({isActive: false})
         res.render('company/index', {activeCompaniesList, pastCompaniesList})
@@ -25,6 +26,7 @@ class companyController{
         console.log(req.body)
         const company = new companyModel(req.body)
         await company.save()
+        req.flash('success', "Drive added successfully")
         res.redirect('/company')
     }
     static async studentApi(req, res){
@@ -51,13 +53,14 @@ class companyController{
 
         await company.save()
         await round.save()
+        req.flash('success', "Round added")
         res.redirect(`/company/${id}`)
     }
     static async addComment(req, res){
         const comment = new commentModel()
         comment.content = req.body.content
-        comment.name = "abhinav"                 //dummy
-        comment.rollNo = 19603                     //dummy
+        comment.name = req.user.name                 //dummy
+        comment.rollNo = req.user.rollNo                     //dummy
         const data = new Date()
         const d = data.toDateString()
         comment.publishDate =  d.substring(4, 7) + " " + d.substring(8, 10) + ", " + d.substring(11, 15) + " " + data.getHours() + ":" + data.getMinutes()  
@@ -79,18 +82,20 @@ class companyController{
     static async deleteCompany(req, res){
         const {id} = req.params
         await companyModel.findByIdAndDelete(id)
+        req.flash('success', "Company Removed")
         res.redirect('/company')
     }
     static async finaliseRound(req, res){
+        console.log(req.params)
         const {id} = req.params
         await companyModel.findByIdAndUpdate(id, {isHired: true})
         const company = await companyModel.findById(id).populate('rounds')
         const round = company.rounds[company.rounds.length-1]
         const placedRollNos = round.selectedStudents.map((obj)=>{return obj["Roll No."]})
         console.log(placedRollNos) 
-        
-        await placementModel.updateMany({rollNo: {$in: placedRollNos}}, {$addToSet: {placedIn: id}})
 
+        await placementModel.updateMany({rollNo: {$in: placedRollNos}}, {$addToSet: {placedIn: id}})
+        req.flash('success', "Round finalised")
         res.redirect(`/company/${id}`)
     }
 
