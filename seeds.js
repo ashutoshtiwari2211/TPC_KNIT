@@ -4,6 +4,7 @@ const roundModel = require('./models/round')
 const studentModel = require('./models/student')
 const PlacementModel = require('./models/placement');
 const placementModel = require('./models/placement');
+const { findOneAndUpdate } = require('./models/company.js');
 
 mongoose.connect('mongodb://127.0.0.1:27017/Tpc', {useNewUrlParser: true});
 const db=mongoose.connection
@@ -61,133 +62,12 @@ db.once('open',()=>{console.log("Database Connected!")});
 // })
 
 
-// studentModel.insertMany([
-//     {
-//         rollNo: 19603,
-//         name: "Abhinav Tiwari",
-//         branch: "IT"
-//     },
-//     {
-//         rollNo: 19618,
-//         name: "Ashutosh Tiwari",
-//         branch: "IT"
-//     },
-//     {
-//         rollNo: 19633,
-//         name: "Mukesh Pashwan",
-//         branh: "IT"
-//     },
-//     {
-//         rollNo: 19646,
-//         name: "Ramashish Kushwaha",
-//         branch: "IT"
-//     },
-//     {
-//         rollNo: 19407,
-//         name: "Abhuday",
-//         branch: "CSE"
-//     },
-//     {
-//         rollNo: 19418,
-//         name: "Abhay",
-//         branch: "CSE"
-//     },
-//     {
-//         rollNo: 19449,
-//         name: "Nandini",
-//         branh: "CSE"
-//     },
-//     {
-//         rollNo: 19458,
-//         name: "Roli Gautam",
-//         branch: "IT"
-//     },
-//     {
-//         rollNo: 19205,
-//         name: "Shubham Singh",
-//         branch: "EL"
-//     },
-//     {
-//         rollNo: 19224,
-//         name: "Kumar Ayush",
-//         branch: "EL"
-//     },
-//     {
-//         rollNo: 19231,
-//         name: "Divyansh",
-//         branh: "EL"
-//     },
-//     {
-//         rollNo: 19469,
-//         name: "Deepak",
-//         branch: "EL"
-//     }
-// ])
+// async function callMe(){
 
-// companyModel.deleteMany({}).then((data)=>{
-//    console.log(data)
-// })
-
-async function callMe(){
-
-const comp = await companyModel.findOne({name: "Infosys"})
+//  await studentModel.findOneAndUpdate({rollNo: 19601}, {role: "TPO"})
 
 
-await placementModel.insertMany([
-   {
-      rollNo: 19603,
-      name: "Abhinav Tiwari",
-      placedIn: [comp._id],
-      highestPakage: 9.5
-   },
-   {
-      rollNo: 19618,
-      name: "Ashutosh Tiwari",
-      placedIn: [comp._id],
-      highestPakage: 9.5
-   },
-   {
-      rollNo: 19407,
-      name: "Abhuday",
-      placedIn: [comp._id],
-      highestPakage: 9.5
-   },
-   {
-      rollNo: 19418,
-      name: "Abhay",
-      placedIn: [comp._id],
-      highestPakage: 9.5
-   },
-   {
-      rollNo: 19449,
-      name: "Nandini",
-      placedIn: [comp._id],
-      highestPakage: 9.5
-   },
-   {
-      rollNo: 19224,
-      name: "Kumar Ayush",
-      placedIn: [comp._id],
-      highestPakage: 9.5
-   },
-   {
-      rollNo: 19469,
-      name: "Deepak",
-      placedIn: [comp._id],
-      highestPakage: 9.5
-   }
-
-])
-
-
-
-// await placementModel.deleteMany()
-
-
-const data = await placementModel.find()
-console.log(data)
-
-}
+// }
 
 callMe()
 
